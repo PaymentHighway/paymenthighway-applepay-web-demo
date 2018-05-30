@@ -1,0 +1,18 @@
+{
+    "currency": "€",
+    "currencyCode": "EUR",
+    "products": [
+        {
+          "id": 1,
+          "name": "Apple",
+          "url": "https://images.pexels.com/photos/39803/pexels-photo-39803.jpeg",
+          "amount": 1.2
+        },
+        {
+          "id": 2,
+          "name": "Orange",
+          "url": "https://images.pexels.com/photos/42059/citrus-diet-food-fresh-42059.jpeg",
+          "amount": 0.2
+        }
+    ]
+  }

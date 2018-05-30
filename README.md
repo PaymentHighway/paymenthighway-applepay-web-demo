@@ -1,45 +1,81 @@
-**Edit a file, create a new file, and clone from Bitbucket in under 2 minutes**
 
-When you're done, you can delete the content in this README and update the file with details for others getting started with your repository.
+# Integrate Apple Pay to a React App
 
-*We recommend that you open this README in another tab as you perform the tasks below. You can [watch our video](https://youtu.be/0ocf7u76WSo) for a full demo of all the steps in this tutorial. Open the video in a new tab to avoid leaving Bitbucket.*
+This is a simple React app example to demonstrate how to integrate Apple Pay to a React App using Payment Highway.
+
+The demo by default use the Apple Pay JS API.<p>
+Changing the env variable REACT_APP_PAYMENT_REQUEST_API the Payment Request API are used instead.
+
+## Configure Your Enviroment 
+
+1. Register your Mechant ID in your Apple Developer account
+2. Create a Payment Processing Certificate
+    * Request a Certificate Signing Request (CSR) from support@paymenthighway.fi for Apple Pay on your site or app.
+    * Sign the CSR in your Apple Developer account and send the Apple Pay Payment Processing Certificate to us.
+3. Create Merchant Identity Certificate
+4. Register and verify your domain
+    * Download Merchant Identity Domain Association to be incorporated in your web site
+5. Payment Highway must be configured accordingly
+6. Make an Apple Pay debit request to us to charge the card in the Payment Data received from Apple.
+
+for more info [Apple Pay documentation](https://developer.apple.com/documentation/apple_pay_on_the_web/configuring_your_environment)
+
+## Client configuration
+
+For the client configuration add a file **.env** in the root of the project with the following variables:
+```bash
+REACT_APP_MERCHANT_ID='Your merchant id'
+REACT_APP_MERCHANT_DISPLAY='Your merchant display'
+REACT_APP_API_URL='https://your.api.base.url'
+REACT_APP_PAYMENT_REQUEST_API=no
+````
+
+## Lambdas configuration
+
+### Session Lambda
+
+Add the **env.session.yml** file to the root of the project with the following configuration:
+
+```yaml
+staging:
+  MERCHANT_IDENTITY_CERT: ${file(path/to/your.pem)} 
+  MERCHANT_IDENTITY_KEY: ${file(path/to/your/private.key)}
+````
+
+### Applepay Lambda
+
+Add the **env.applepay.yml** file to the root of the project with the following configuration:
+
+```yaml
+staging:
+  PH_SERVICE_URL: 'https://your.paymenthighway.service.url'
+  PH_KEY: 'your payment highway key'
+  PH_SECRET: 'your payment highway secret'
+  PH_ACCOUNT: 'your payment highway account'
+  PH_MERCHANT: 'your merchant id'
+```
+
+## Payment Highway demo ##
+
+Adding the variable REACT_APP_DEMO_STEPS=yes in the .env file the **ShoppingCartStepByStep.js** is used for demo  purpose.
+
+Open the file **ShoppingCartStepByStep.js** and follow the instructions:
+* Step 1: Show the Apple Pay Button
+* Step 2: Perform Apple Pay Payment 
 
 ---
 
-## Edit a file
+### References
 
-You’ll start by editing this README file to learn how to edit a file in Bitbucket.
+[Payment Highway API documentation](https://dev.paymenthighway.io/)
 
-1. Click **Source** on the left side.
-2. Click the README.md link from the list of files.
-3. Click the **Edit** button.
-4. Delete the following text: *Delete this line to make a change to the README from Bitbucket.*
-5. After making your change, click **Commit** and then **Commit** again in the dialog. The commit page will open and you’ll see the change you just made.
-6. Go back to the **Source** page.
+[Getting Started with Apple Pay](https://developer.apple.com/apple-pay/get-started/)
 
----
+[Apple Pay on the web](https://developer.apple.com/documentation/apple_pay_on_the_web)
 
-## Create a file
+[Apple Pay JS API](https://developer.apple.com/documentation/apple_pay_on_the_web/apple_pay_js_api)
 
-Next, you’ll add a new file to this repository.
+[Payment Request API (W3C)](https://www.w3.org/TR/payment-request/)
 
-1. Click the **New file** button at the top of the **Source** page.
-2. Give the file a filename of **contributors.txt**.
-3. Enter your name in the empty file space.
-4. Click **Commit** and then **Commit** again in the dialog.
-5. Go back to the **Source** page.
+[Introducing the Payment Request API for Apple Pay](https://webkit.org/blog/8182/introducing-the-payment-request-api-for-apple-pay/)
 
-Before you move on, go ahead and explore the repository. You've already seen the **Source** page, but check out the **Commits**, **Branches**, and **Settings** pages.
-
----
-
-## Clone a repository
-
-Use these steps to clone from SourceTree, our client for using the repository command-line free. Cloning allows you to work on your files locally. If you don't yet have SourceTree, [download and install first](https://www.sourcetreeapp.com/). If you prefer to clone from the command line, see [Clone a repository](https://confluence.atlassian.com/x/4whODQ).
-
-1. You’ll see the clone button under the **Source** heading. Click that button.
-2. Now click **Check out in SourceTree**. You may need to create a SourceTree account or log in.
-3. When you see the **Clone New** dialog in SourceTree, update the destination path and name if you’d like to and then click **Clone**.
-4. Open the directory you just created to see your repository’s files.
-
-Now that you're more familiar with your Bitbucket repository, go ahead and add a new file locally. You can [push your change back to Bitbucket with SourceTree](https://confluence.atlassian.com/x/iqyBMg), or you can [add, commit,](https://confluence.atlassian.com/x/8QhODQ) and [push from the command line](https://confluence.atlassian.com/x/NQ0zDQ).
