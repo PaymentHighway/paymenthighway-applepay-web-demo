@@ -1,0 +1,51 @@
+service: paymenthighway-applepay-demo-lambda
+
+package:
+  individually: true
+  exclude:
+    - .idea/**
+    - ssl/**
+
+# Use the serverless-webpack plugin to transpile ES6
+plugins:
+  - serverless-webpack
+  - serverless-offline
+
+# serverless-webpack configuration
+# Enable auto-packing of external modules
+custom:
+  webpack:
+    webpackConfig: ./webpack.config.js
+    includeModules: true
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: staging # dev
+  region: eu-west-1
+
+functions:
+  create:
+    handler: session.create
+    memorySize: 1024 # optional, in MB, default is 1024
+    events:
+      - http:
+          path: session/create
+          method: post
+          cors:
+            origin: "*"
+    package:
+      include:
+        - ssl/**
+    environment: ${file(env.session.yml):${self:provider.stage}} 
+
+  applepay_debit:
+    handler: applepay.debit
+    memorySize: 1024
+    events:
+      - http:
+          path: applepay/debit
+          method: post
+          cors:
+            origin: "*"
+    environment: ${file(env.applepay.yml):${self:provider.stage}} 
