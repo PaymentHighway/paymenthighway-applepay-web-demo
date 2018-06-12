@@ -1,16 +1,14 @@
 {
   "name": "paymenthighway-applepay-demo-lambda",
-  "version": "1.1.0",
-  "description": "A Node.js starter for the Serverless Framework with async/await and unit test support",
-  "main": "handler.js",
+  "version": "0.1.0",
+  "description": "Integrate Apple Pay to a React App using Payment Highway API: AWS Lambdas",
   "scripts": {
     "test": "jest"
   },
-  "author": "",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/AnomalyInnovations/serverless-nodejs-starter.git"
+    "url": "https://github.com/PaymentHighway/paymenthighway-applepay-web-demo/tree/master/paymenthighway-applepay-demo-lambda"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
