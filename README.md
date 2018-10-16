@@ -63,6 +63,14 @@ Open the file **ShoppingCartStepByStep.js** and follow the instructions:
 * Step 1: Show the Apple Pay Button
 * Step 2: Perform Apple Pay Payment 
 
+# AWS Lambdas
+
+In the [repository paymenthighway-merchant-backend-demo](https://github.com/PaymentHighway/paymenthighway-merchant-backend-demo) you can find the server implementation for the demo. 
+
+There are 2 lambdas implemented:
+1. **session.js** : Request a valid Apple Pay Session from the Apple Pay server.
+2. **applepay.js** : Perfom the actual payment(Debit) via Payment Highway API.
+
 ---
 
 ### References
