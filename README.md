@@ -20,7 +20,7 @@ Changing the env variable REACT_APP_PAYMENT_REQUEST_API the Payment Request API 
 
 for more info [Apple Pay documentation](https://developer.apple.com/documentation/apple_pay_on_the_web/configuring_your_environment)
 
-## Client configuration
+## Configuration
 
 For the client configuration add a file **.env** in the root of the project with the following variables:
 ```bash
@@ -30,32 +30,19 @@ REACT_APP_API_URL='https://your.api.base.url'
 REACT_APP_PAYMENT_REQUEST_API=no
 ````
 
-## Lambdas configuration
+## Getting Started ##
 
-### Session Lambda
-
-Add the **env.session.yml** file to the root of the project with the following configuration:
-
-```yaml
-staging:
-  MERCHANT_IDENTITY_CERT: ${file(path/to/your.pem)} 
-  MERCHANT_IDENTITY_KEY: ${file(path/to/your/private.key)}
-````
-
-### Applepay Lambda
-
-Add the **env.applepay.yml** file to the root of the project with the following configuration:
-
-```yaml
-staging:
-  PH_SERVICE_URL: 'https://your.paymenthighway.service.url'
-  PH_KEY: 'your payment highway key'
-  PH_SECRET: 'your payment highway secret'
-  PH_ACCOUNT: 'your payment highway account'
-  PH_MERCHANT: 'your merchant id'
+Install dependencies:
+```bash
+$ yarn install
 ```
 
-## Payment Highway demo ##
+Deploy app to S3 bucket
+```bash
+$ yarn deploy-s3
+```
+
+## Demo mode ##
 
 Adding the variable REACT_APP_DEMO_STEPS=yes in the .env file the **ShoppingCartStepByStep.js** is used for demo  purpose.
 
@@ -66,10 +53,6 @@ Open the file **ShoppingCartStepByStep.js** and follow the instructions:
 # AWS Lambdas
 
 In the [repository paymenthighway-merchant-backend-demo](https://github.com/PaymentHighway/paymenthighway-merchant-backend-demo) you can find the server implementation for the demo. 
-
-There are 2 lambdas implemented:
-1. **session.js** : Request a valid Apple Pay Session from the Apple Pay server.
-2. **applepay.js** : Perfom the actual payment(Debit) via Payment Highway API.
 
 ---
 
